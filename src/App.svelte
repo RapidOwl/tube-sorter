@@ -1,27 +1,34 @@
 <script>
+	/* Rules:
+	- One colour poured at a time.
+	- Like colours merge.
+	- Can only pour like colours onto each other.
+	- Empty tubes can receive any colour.
+	- Sometimes a tube can only take some of the liquid being poured in because it's too full.
+	- The game ends when all tubes are either empty or only contain one colour and each colour is only in one tube.
+	*/
+
+	import GenerateLevel from './level-generator';
+
 	export let name;
 
 	let tubeCapacity = 4;
 
-	// Rules:
-	// - One colour poured at a time.
-	// - Like colours merge.
-	// - Can only pour like colours onto each other.
-	// - Empty tubes can receive any colour.
-	// - Sometimes a tube can only take some of the liquid being poured in because it's too full.
-	// - The game ends when all tubes are either empty or only contain one colour and each colour is only in one tube.
+	// TODO Persist tube state to localStorage and button for new game
+	// Only create new game automatically if localStorage is empty
 
-	// TODO Persist tube state to localStorage
+	// TODO Encode each level, put it in the querystring and make it shareable!
 
-	// TODO Rationalise focus state vs selected tube
+	// TODO Let the user set the size of the level (max of six) and store in localStorage
+	let tubes = GenerateLevel(3, tubeCapacity);
 
-	let tubes = [
-		{ selected: false, liquids: ['red', 'green', 'red', 'red'] },
-		{ selected: false, liquids: ['green', 'green', 'green', 'red'] },
-		{ selected: false, liquids: ['yellow', 'yellow', 'yellow', 'yellow'] },
-		{ selected: false, liquids: [] },
-		{ selected: false, liquids: [] },
-	];
+	// let tubes = [
+	// 	{ selected: false, liquids: ['red', 'green', 'red', 'red'] },
+	// 	{ selected: false, liquids: ['green', 'green', 'green', 'red'] },
+	// 	{ selected: false, liquids: ['yellow', 'yellow', 'yellow', 'yellow'] },
+	// 	{ selected: false, liquids: [] },
+	// 	{ selected: false, liquids: [] },
+	// ];
 
 	let selectedTubeIndex = -1;
 
@@ -81,7 +88,9 @@
 
 <main>
 	<h1>Hello {name}!</h1>
-	<h2 style="color: white;">Game is won === {gameIsWon}</h2>
+	<p>Warning: Levels are randomly generated and the level may not be possible to complete!</p>
+	<h2>Game is won === {gameIsWon}</h2>
+	<!-- TODO Keyboard navigation! -->
 	<div class="tube-rack">
 		{#each tubes as tube, i}
 			<div
@@ -89,7 +98,7 @@
 				on:click={() => tubeClicked(i)}
 			>
 				{#each tube.liquids as liquid, j}
-					<div class="liquid" style="background-color: {liquid}">{j}</div>
+					<div class="liquid" style="background-color: {liquid}" />
 				{/each}
 			</div>
 		{/each}
@@ -102,6 +111,7 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+		color: #fff;
 	}
 
 	h1 {

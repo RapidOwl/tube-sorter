@@ -81,7 +81,7 @@
 
 <main>
 	<h1>Hello {name}!</h1>
-	<h2>Game is won === {gameIsWon}</h2>
+	<h2 style="color: white;">Game is won === {gameIsWon}</h2>
 	<div class="tube-rack">
 		{#each tubes as tube, i}
 			<div

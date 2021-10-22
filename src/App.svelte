@@ -8,21 +8,12 @@
 	- The game is won when all tubes are either empty or only contain one colour and each colour is only in one tube.
 	*/
 
-	// TODO Persist tube state to localStorage and button for new game
-	// Only create new game automatically if localStorage is empty
-
+	import GitHubCorner from './GitHubCorner.svelte';
 	import GenerateLevel from './level-generator';
 
 	let tubeCapacity = 4;
 	let maximumDifficulty = 6;
 
-	// TODO Encode each level, put it in the querystring and make it shareable!
-
-	// TODO Rewind
-
-	// TODO Keyboard navigation!
-
-	// TODO Let the user set the size of the level (max of six) and store in localStorage
 	let tubes = GenerateLevel(6, tubeCapacity);
 
 	let selectedTubeIndex = -1;
@@ -89,11 +80,12 @@
 	checkIfGameIsWon();
 </script>
 
+<GitHubCorner />
 <main>
 	<h1>Tube Sorter</h1>
 	<p>Pour the liquid between the tubes until each colour is in its own tube</p>
 	{#if gameIsWon}
-		<h2>🎉🎉🎉 You won! 🎉🎉🎉</h2>
+		<h2>🎉 You won! 🎉</h2>
 	{/if}
 
 	<div class="tube-rack">
@@ -157,7 +149,15 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		flex-wrap: wrap;
 	}
+
+	/* .tube-rack-separator {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: nowrap;
+	} */
 
 	.test-tube {
 		margin: 12px;

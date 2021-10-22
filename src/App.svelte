@@ -154,9 +154,10 @@
 		{/each}
 	</div>
 	<footer>
-		Made with ♥ by <a href="https://twitter.com/RapidOwl" target="_blank"
+		<p>Made with ♥ by <a href="https://twitter.com/RapidOwl" target="_blank"
 			>@RapidOwl</a
-		>
+		></p>
+		<p>Cookie policy: This site does not use cookies</p>
 	</footer>
 	<!-- <pre style="white-space: pre-wrap;">
 		{JSON.stringify(tubes)}

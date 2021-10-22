@@ -127,6 +127,7 @@
 			{/if}
 		{/each}
 	</div>
+	<footer>Made with ♥ by <a href="https://twitter.com/RapidOwl" target="_blank">@RapidOwl</a></footer>
 	<!-- <pre style="white-space: pre-wrap;">
 		{JSON.stringify(tubes)}
 	</pre> -->
@@ -145,6 +146,11 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: bold;
+	}
+
+	a {
+		color: white;
+		text-decoration: underline;
 	}
 
 	.tube-rack {
@@ -204,6 +210,10 @@
 
 	.new-game-button:nth-child(4) {
 		background-color: #e0bbe4;
+	}
+
+	footer {
+		margin-top: 50px;
 	}
 
 	@media (min-width: 640px) {

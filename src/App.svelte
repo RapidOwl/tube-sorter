@@ -167,15 +167,26 @@
 	main {
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
+		max-width: 375px;
 		margin: 0 auto;
 		color: #fff;
+		/* border: 1px palevioletred solid; */
 	}
 
 	h1 {
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 2em;
 		font-weight: bold;
+	}
+
+	@media (min-width: 640px) {
+		main {
+			max-width: none;
+		}
+
+		h1 {
+			font-size: 4em;
+		}
 	}
 
 	a {
@@ -212,10 +223,13 @@
 		border: 2px solid black;
 		border-radius: 0 0 26px 26px;
 		overflow: hidden;
+		transition: transform 0.05s ease-in-out;
 	}
 
 	.test-tube.selected {
 		box-shadow: 0 0 5px white;
+		transform: translateY(-10px);
+		transition: transform 0.15s ease-in-out;
 	}
 
 	.liquid {
@@ -266,11 +280,5 @@
 
 	footer {
 		margin-top: 50px;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>

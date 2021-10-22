@@ -32,8 +32,6 @@
 		} else {
 			startNewGame(5);
 		}
-
-		checkIfGameIsWon();
 	};
 
 	let startNewGame = (numberOfTubes) => {
@@ -45,10 +43,14 @@
 		var newRelativePathQuery =
 			window.location.pathname + '?' + searchParams.toString();
 		history.pushState(null, '', newRelativePathQuery);
+
+		checkIfGameIsWon();
 	};
 
 	let restoreGame = (stateString) => {
 		tubes = JSON.parse(atob(stateString));
+
+		checkIfGameIsWon();
 	};
 
 	let tubeClicked = (index) => {
@@ -110,6 +112,8 @@
 
 	let resetTubes = () => {
 		tubes = JSON.parse(JSON.stringify(initialTubeState));
+
+		checkIfGameIsWon();
 	};
 
 	setupGame();
@@ -119,11 +123,13 @@
 <main>
 	<h1>Tube Sorter</h1>
 	<p>Pour the liquid between the tubes until each colour is in its own tube</p>
-	{#if gameIsWon}
-		<h2>🎉 You won! 🎉</h2>
-	{/if}
 
 	<div class="tube-rack">
+		{#if gameIsWon}
+			<div class="success-banner" aria-hidden={!gameIsWon}>
+				<h2>You won!</h2>
+			</div>
+		{/if}
 		{#each tubes as tube, i}
 			<div
 				class="test-tube{tube.selected ? ' selected' : ''}"
@@ -154,9 +160,11 @@
 		{/each}
 	</div>
 	<footer>
-		<p>Made with ♥ by <a href="https://twitter.com/RapidOwl" target="_blank"
-			>@RapidOwl</a
-		></p>
+		<p>
+			Made with ♥ by <a href="https://twitter.com/RapidOwl" target="_blank"
+				>@RapidOwl</a
+			>
+		</p>
 		<p>Cookie policy: This site does not use cookies</p>
 	</footer>
 	<!-- <pre style="white-space: pre-wrap;">
@@ -200,10 +208,30 @@
 	}
 
 	.tube-rack {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		flex-wrap: wrap;
+	}
+
+	.success-banner {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.success-banner > h2 {
+		font-size: 3rem;
+		line-height: 3rem;
+		background: #fdffb4;
+		color: #000;
+		padding: 5px 40px 15px;
+		border-radius: 3rem;
+		box-shadow: 0px 0px 12px 5px #2f4f4f;
 	}
 
 	/* .tube-rack-separator {

@@ -1,6 +1,6 @@
 export default function GenerateLevel(numberOfColours, tubeSize) {
 
-	console.log('Generating level with ' + numberOfColours + ' colours!')
+	//console.log('Generating level with ' + numberOfColours + ' colours!')
 
 	// let coloursInPlay = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']
 	// 	.slice(0, numberOfColours);
